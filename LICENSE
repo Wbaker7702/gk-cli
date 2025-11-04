@@ -71,3 +71,18 @@ To apply the Apache License to your work, attach the following boilerplate notic
    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and
    limitations under the License.
+
+-------------------------------------------------------------------------------
+
+Documentation License
+
+Documentation, tutorials, and other non-code content distributed with this
+repository are licensed under the Creative Commons Attribution 3.0 United
+States License. You may obtain a copy of the license at:
+
+    https://creativecommons.org/licenses/by/3.0/us/
+
+You must attribute "Axosoft, LLC dba GitKraken" as the original source when
+sharing or adapting documentation content, provide a link to the license, and
+indicate if changes were made. No additional restrictions may be applied beyond
+those allowed by the Creative Commons Attribution 3.0 United States License.
