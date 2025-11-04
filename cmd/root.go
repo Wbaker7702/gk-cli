@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/gitkraken/gk-cli/internal/config"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
@@ -55,6 +56,11 @@ func initConfig() {
 	}
 
 	viper.AutomaticEnv() // read in environment variables that match
+
+	// Initialize config system
+	if err := config.Init(); err != nil {
+		fmt.Fprintf(os.Stderr, "Warning: Failed to initialize config: %v\n", err)
+	}
 
 	// If a config file is found, read it in.
 	if err := viper.ReadInConfig(); err == nil {

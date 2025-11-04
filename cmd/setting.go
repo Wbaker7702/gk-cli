@@ -2,7 +2,9 @@ package cmd
 
 import (
 	"fmt"
+	"os"
 
+	"github.com/gitkraken/gk-cli/internal/config"
 	"github.com/spf13/cobra"
 )
 
@@ -21,11 +23,15 @@ var settingThemeCmd = &cobra.Command{
 scheme of the CLI interface.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		if len(args) > 0 {
-			fmt.Printf("Setting theme to: %s\n", args[0])
-			// TODO: Set theme in config
+			themeName := args[0]
+			if err := config.SetTheme(themeName); err != nil {
+				fmt.Fprintf(os.Stderr, "Error setting theme: %v\n", err)
+				return
+			}
+			fmt.Printf("Theme set to: %s\n", themeName)
 		} else {
-			fmt.Println("Current theme: default")
-			// TODO: Read theme from config
+			theme := config.GetTheme()
+			fmt.Printf("Current theme: %s\n", theme)
 		}
 	},
 }

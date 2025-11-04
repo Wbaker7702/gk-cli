@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/gitkraken/gk-cli/internal/config"
 	"github.com/spf13/cobra"
 )
 
@@ -29,8 +30,11 @@ var logoutCmd = &cobra.Command{
 	Short: "Logout from GitKraken",
 	Long:  `Logout from GitKraken and clear stored authentication tokens.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Logout command - Clearing authentication...")
-		// TODO: Clear stored tokens from config
+		if err := config.ClearAuth(); err != nil {
+			fmt.Fprintf(os.Stderr, "Error clearing authentication: %v\n", err)
+			return
+		}
+		fmt.Println("Successfully logged out")
 	},
 }
 
