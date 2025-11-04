@@ -1,0 +1,37 @@
+{
+  "name": "gk_theme",
+  "colors": {
+    "accent": {
+      "dark": "93A9EC",
+      "light": "93A9EC"
+    },
+    "primary": {
+      "dark": "FFFFFF",
+      "light": "000000"
+    },
+    "secondary": {
+      "dark": "CCCCCC",
+      "light": "666666"
+    },
+    "success": {
+      "dark": "4CAF50",
+      "light": "2E7D32"
+    },
+    "warning": {
+      "dark": "FF9800",
+      "light": "F57C00"
+    },
+    "error": {
+      "dark": "F44336",
+      "light": "C62828"
+    },
+    "background": {
+      "dark": "1E1E1E",
+      "light": "FFFFFF"
+    },
+    "surface": {
+      "dark": "2D2D2D",
+      "light": "F5F5F5"
+    }
+  }
+}
