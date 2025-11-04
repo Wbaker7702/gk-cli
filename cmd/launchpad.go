@@ -3,6 +3,7 @@ package cmd
 import (
 	"fmt"
 
+	"github.com/gitkraken/gk-cli/internal/launchpad"
 	"github.com/spf13/cobra"
 )
 
@@ -17,15 +18,20 @@ details of any item and take action on your most important tasks.
 Shortcuts:
   p - Pin/unpin items
   s - Snooze/unsnooze items`,
-	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Launching GitKraken Launchpad...")
-		fmt.Println("TODO: Implement interactive Launchpad UI")
-		// TODO: Implement interactive TUI with:
-		// - List of PRs, Issues, WIPs
-		// - Filtering and search
-		// - Pin/unpin functionality
-		// - Snooze/unsnooze functionality
-		// - Keyboard navigation
+	RunE: func(cmd *cobra.Command, args []string) error {
+		ws, err := getWorkspace()
+		if err != nil {
+			return err
+		}
+
+		fmt.Println("Loading Launchpad...")
+		lp, err := launchpad.LoadItems(ws)
+		if err != nil {
+			return fmt.Errorf("failed to load launchpad: %w", err)
+		}
+
+		lp.Display()
+		return nil
 	},
 }
 

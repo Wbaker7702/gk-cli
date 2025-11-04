@@ -91,7 +91,12 @@ func Get() *Config {
 // Save saves the current configuration to disk
 func Save() error {
 	if globalConfig == nil {
-		return fmt.Errorf("config not initialized")
+		// Initialize if needed
+		globalConfig = &Config{
+			Theme:      "default",
+			Providers:  make(map[string]interface{}),
+			Workspaces: make(map[string]interface{}),
+		}
 	}
 
 	viper.Set("theme", globalConfig.Theme)
@@ -100,6 +105,14 @@ func Save() error {
 	viper.Set("workspaces", globalConfig.Workspaces)
 
 	return viper.WriteConfigAs(configPath)
+}
+
+// UpdateProviders updates providers in config
+func UpdateProviders(providers map[string]interface{}) error {
+	cfg := Get()
+	cfg.Providers = providers
+	globalConfig = cfg
+	return Save()
 }
 
 // SetTheme sets the theme in the configuration
